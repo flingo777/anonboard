@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to fetch and display username
     const fetchUsername = async () => {
-        const response = await fetch('/api/username');
+        const response = await fetch('./backend/api/username');
         const data = await response.json();
         currentUsername = data.username;
         usernameDisplay.textContent = `Your Anonymous Username: ${currentUsername}`;
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to fetch and display threads
     const fetchThreads = async () => {
-        const response = await fetch('/api/threads');
+        const response = await fetch('./backend/api/threads');
         const threads = await response.json();
         threadListDiv.innerHTML = ''; // Clear existing threads
         threads.forEach(thread => {
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const fetchComments = async (threadId) => {
-        const response = await fetch(`/api/threads/${threadId}/comments`);
+        const response = await fetch(`./backend/api/threads/${threadId}/comments`);
         const comments = await response.json();
         commentListDiv.innerHTML = ''; // Clear existing comments
         comments.forEach(comment => {
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const response = await fetch('/api/threads', {
+        const response = await fetch('./backend/api/threads', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const response = await fetch(`/api/threads/${currentThreadId}/comments`, {
+        const response = await fetch(`./backend/api/threads/${currentThreadId}/comments`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ threadId: currentThreadId, username: currentUsername, content, captcha })
